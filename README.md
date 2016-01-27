@@ -1,5 +1,17 @@
 ## 概要
-添加了多文件上传和下载，结合项目中的使用习惯进行了二次封装
+结合项目中的使用习惯，对Volley进行了一定的封装，新增了GsonRequest类，使用中需要结合Gson包来解析数据；并新增了文件下载和文件上传功能；
+在使用中需注意：需要在	HttpServie 类中配置修改URL地址，以Struts为例：比如我们的服务器地址为http://192.168.30.100:8080/VolleyServer,
+Action的地址为：hospital/hospitalAction!queryHospitalList.do,
+那么需要将URL设置成：ttp://192.168.30.100:8080/VolleyServer/?,
+实例Request时传入方法参数为：new GsonRequest("hospital/hospitalAction!queryHospitalList.do",........);在中网络请求的过程中会拼接为：http://192.168.30.100:8080/VolleyServer/hospital/hospitalAction!queryHospitalList.do;
+如果我们的请求都在一个Action中，那么可以设置URL为http://192.168.30.100:8080/VolleyServer/hospital/hospitalAction!?.do,
+实例Request时传入方法参数为：new GsonRequest("queryHospitalList",........)
+
+注意：使用是服务端的返回值需要为gson格式，客户端根据服务端返回的类容定义相应的类；
+
+
+这儿有几篇博客关于volly的介绍 ：[volley缓存、超时重试策略介绍](http://blog.csdn.net/mrruby)
+
 ## get请求
 ```
 	private void doGet() {
@@ -76,7 +88,7 @@
 	
 ```
 
-## 文件下载(不支持断点续传)
+## 文件下载
 
 ```
 	private void doFileDown() {
