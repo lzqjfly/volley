@@ -12,6 +12,13 @@ Action的地址为：hospital/hospitalAction!queryHospitalList.do,
 
 这儿有几篇博客关于volly的介绍 ：[volley缓存、超时重试策略介绍](http://blog.csdn.net/mrruby)
 
+## 权限
+```
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+```
+
 ## get请求
 ```
 	private void doGet() {
